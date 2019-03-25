@@ -10,9 +10,9 @@ Then RUN CONSOLE FULL SCREEN and launch main.py with next command:
 
     name:~directories$ python3 main.py
 
-Here you can play
-    
-Print Ctrl + Z to exit game.
+Here you can play. Press Space to shoot; w, a, s, d to move up, left, down and right respectively. 
+
+To exit game, press Ctrl + Z.
 
 You can also add objects in main.py play_game() function. 
 
