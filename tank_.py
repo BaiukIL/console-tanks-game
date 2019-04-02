@@ -24,7 +24,7 @@ class Tank(gameobject_.MoveObject, unit_.Unit):
                                         game=game)
         unit_.Unit.__init__(self, health=health, damage=damage)
         self.game_reference = game
-        self.add_to_group(gamenames_.HEALTH_OBJECTS)
+        self._add_to_group(gamenames_.HEALTH_OBJECTS)
 
     def action(self):
         self.shoot()
@@ -46,8 +46,8 @@ class Tank(gameobject_.MoveObject, unit_.Unit):
             raise Exception(self.speed.direction, "- incorrect direction")
         bullet_.Bullet(bullet_x, bullet_y, damage=self.damage, direction=self.speed.direction, game=self.game_reference)
 
-    def rotate_form(self, direction):
+    def _rotate_form(self, direction):
         self.form = Tank.orientations[direction]
 
-    def die(self):
-        self.__del__()
+    def _die(self):
+        self._delete()

@@ -18,3 +18,10 @@ def square_path(side):
         yield ' '
         for i in range(side):
             yield 'd'
+
+
+def static_shoot(delay):
+    while True:
+        yield ' '
+        for i in range(delay):
+            yield ''

@@ -49,7 +49,7 @@ def play_game():
 
     enemy_1 = player_.Bot('enemy 1', this_game)
     enemy_1.set_strategy(strategy_.square_path(side=20))
-    enemy_1.set_object(tank_.Tank(x=100, y=30, speed_value=1, health=3, damage=1, game=this_game))
+    enemy_1.set_object(tank_.Tank(x=100, y=40, speed_value=1, health=3, damage=1, game=this_game))
     this_game.add_bot(enemy_1)
 
     enemy_2 = player_.Bot('enemy 2', this_game)
@@ -57,6 +57,11 @@ def play_game():
     enemy_2.set_object(tank_.Tank(x=gameconfig_.FIELD_WIDTH-7, y=30, speed_value=1, health=3, damage=1, game=this_game))
     this_game.add_bot(enemy_2)
 
+    enemy_3 = player_.Bot('enemy 3', this_game)
+    enemy_3.set_strategy(strategy_.static_shoot(10))
+    enemy_3.set_object(tank_.Tank(x=1, y=gameconfig_.FIELD_HEIGHT - 4, speed_value=1, health=3, damage=1,
+                                  game=this_game, start_direction=gamenames_.UP))
+    this_game.add_bot(enemy_3)
     game_loop()
 
 

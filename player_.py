@@ -17,12 +17,9 @@ class Player:
     # player can still have reference to it. It happens because player.object reference to the very object so
     # removing it from game's scope doesn't influence to object's existence at all. Python's reference system doesn't
     # allow to have reference to the reference (e. g. "object" in game.classes is a such reference in this case)
-    # To solve problem, I've decided to check if player.__obj__ exists in game.classes every time it's called
+    # To solve problem, I've decided to check if player.obj exists in game.classes every time it's called
     def exists(self):
-        if self.obj in self.game.objects_array():
-            return True
-        else:
-            return False
+        return self.obj in self.game.objects_array()
 
     def action(self, act):
         if not self.exists():
