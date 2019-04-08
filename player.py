@@ -1,7 +1,7 @@
 """Module with players"""
 
 
-import gamenames_
+import gamenames
 
 
 class Player:
@@ -25,13 +25,13 @@ class Player:
         if not self.exists():
             return
         if act == 'w':
-            self.obj.move(gamenames_.UP)
+            self.obj.move(gamenames.UP)
         elif act == 'a':
-            self.obj.move(gamenames_.LEFT)
+            self.obj.move(gamenames.LEFT)
         elif act == 'd':
-            self.obj.move(gamenames_.RIGHT)
+            self.obj.move(gamenames.RIGHT)
         elif act == 's':
-            self.obj.move(gamenames_.DOWN)
+            self.obj.move(gamenames.DOWN)
         elif act == ' ':
             self.obj.action()
 

@@ -2,7 +2,7 @@
 
 
 from os import system
-import gamenames_
+import gamenames
 
 
 def clear_scr():
@@ -17,7 +17,7 @@ class Field:
         self.right_border = width - 1
         self.up_border = 0
         self.down_border = height - 1
-        self.buffer = [[gamenames_.EMPTY_CHAR] * height for i in range(width)]
+        self.buffer = [[gamenames.EMPTY_CHAR] * height for i in range(width)]
 
     def draw_object(self, obj):
         start_x, start_y, form = obj.get_data()
@@ -35,7 +35,7 @@ class Field:
         self.clear_buffer()
 
     def clear_buffer(self):
-        self.buffer = [[gamenames_.EMPTY_CHAR] * self.height for i in range(self.width)]
+        self.buffer = [[gamenames.EMPTY_CHAR] * self.height for i in range(self.width)]
 
     def print_field(self):
         for y in range(self.height):

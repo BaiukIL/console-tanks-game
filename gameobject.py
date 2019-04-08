@@ -1,8 +1,14 @@
 """Basic object module (game objects are inherited from this one)"""
 
 
-import gamenames_
-import vector_
+import gamenames
+import vector
+
+
+class CollisionOccurred(Exception):
+    """This class is responsible for collisions.
+    If collision occurred, this one is thrown."""
+    pass
 
 
 class GameObject:
@@ -23,6 +29,7 @@ class GameObject:
         for group in self.groups.values():
             if self in group:
                 group.remove(self)
+        del self
 
     @property
     def height(self):
@@ -63,36 +70,34 @@ class GameObject:
 class MoveObject(GameObject):
     def __init__(self, x, y, game, form, direction, speed_value):
         super().__init__(x, y, game=game, form=form)
-        self.speed = vector_.Vector(direction=direction, value=speed_value)
-        self._add_to_group(gamenames_.MOVE_OBJECTS)
+        self.speed = vector.Vector(direction=direction, value=speed_value)
+        self._add_to_group(gamenames.MOVE_OBJECTS)
 
     def move(self, direction):
         for step in range(self.speed.value):
             # if collision occurred basic_movement returns StopIteration
             try:
                 self._basic_movement(direction)
-            except StopIteration:
+            except CollisionOccurred:
                 break
 
     def _basic_movement(self, direction):
         self.speed.direction = direction
         self._rotate_form(direction)
-        if direction == gamenames_.UP:
+        if direction == gamenames.UP:
             self.y -= 1
-        elif direction == gamenames_.DOWN:
+        elif direction == gamenames.DOWN:
             self.y += 1
-        elif direction == gamenames_.LEFT:
+        elif direction == gamenames.LEFT:
             self.x -= 1
-        elif direction == gamenames_.RIGHT:
+        elif direction == gamenames.RIGHT:
             self.x += 1
         else:
-            raise Exception(self.speed.direction, "- incorrect direction")
+            raise Exception("{} - incorrect direction".format(self.speed.direction))
 
-        collision_occurred = self._fix_collisions(direction)
-        if collision_occurred:
-            raise StopIteration
+        self._fix_collisions(direction)
 
-    # if collision occurred it returns true, else - false
+    # if collision occurred it throws exception: CollisionOccurred
     def _fix_collisions(self, direction):
         collision_occurred = False
         for obj in self._objects_array():
@@ -100,19 +105,18 @@ class MoveObject(GameObject):
                 collision_occurred = True
                 self._fix_collision(obj, direction)
                 self._action_after_collision(obj)
-        return collision_occurred
+        if collision_occurred:
+            raise CollisionOccurred
 
     def _fix_collision(self, obj, direction):
-        if direction == gamenames_.UP:
+        if direction == gamenames.UP:
             self.y += abs(obj.down_border - self.up_border) + 1
-        elif direction == gamenames_.DOWN:
+        elif direction == gamenames.DOWN:
             self.y -= abs(self.down_border - obj.up_border) + 1
-        elif direction == gamenames_.LEFT:
+        elif direction == gamenames.LEFT:
             self.x += abs(obj.right_border - self.left_border) + 1
-        elif direction == gamenames_.RIGHT:
+        elif direction == gamenames.RIGHT:
             self.x -= abs(self.right_border - obj.left_border) + 1
-        else:
-            pass
 
     def _in_horizontal_line_with(self, obj):
         return not (obj.down_border < self.up_border or self.down_border < obj.up_border)
