@@ -1,8 +1,7 @@
 """Wall module"""
 
-
-import gameobject
-import gameconfig
+from tanks_console_game.objects import gameobject
+from tanks_console_game.configs import gameconfig
 
 
 class Wall(gameobject.GameObject):

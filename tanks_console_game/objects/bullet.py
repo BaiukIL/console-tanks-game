@@ -1,10 +1,8 @@
 """Bullet module"""
 
-
-import gameobject
-import gamenames
-import gameconfig
-import weapon
+from tanks_console_game.objects import gameobject
+from tanks_console_game.configs import gameconfig, gamename
+from tanks_console_game.properties import weapon
 
 
 class Bullet(gameobject.MoveObject, weapon.Weapon):
@@ -22,7 +20,7 @@ class Bullet(gameobject.MoveObject, weapon.Weapon):
 
     def hit(self, obj):
         # if object has health attribute
-        if obj in self.groups[gamenames.HEALTH_OBJECTS]:
+        if obj in self.groups[gamename.HEALTH_OBJECTS]:
             obj.decrease_health(self.damage)
 
     def _action_after_collision(self, obj):

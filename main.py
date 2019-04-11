@@ -1,13 +1,9 @@
-"""Example of the game"""
+"""Game example"""
 
 
-import gamenames
-import gameconfig
-import player as player_mod
-import game
-import tank
-import wall
-import strategy
+from tanks_console_game.configs import gameconfig, gamename
+from tanks_console_game.abstractions import game, player as player_mod, strategy
+from tanks_console_game.objects import tank, wall
 from getch import getch
 
 
@@ -26,7 +22,7 @@ def play_game():
                 player.action(player.next_step)
 
     def move_other_movable_objects():
-        for obj in this_game.groups[gamenames.MOVE_OBJECTS]:
+        for obj in this_game.groups[gamename.MOVE_OBJECTS]:
             if not isinstance(obj, tank.Tank):
                 obj.move()
 
@@ -62,7 +58,7 @@ def play_game():
     enemy_3 = player_mod.Bot('enemy 3', this_game)
     enemy_3.set_strategy(strategy.static_shoot(10))
     enemy_3.set_object(tank.Tank(x=1, y=gameconfig.FIELD_HEIGHT - 4, speed_value=1, health=3, damage=1,
-                                 game=this_game, start_direction=gamenames.UP))
+                                 game=this_game, start_direction=gamename.UP))
     this_game.add_bot(enemy_3)
 
     game_loop()

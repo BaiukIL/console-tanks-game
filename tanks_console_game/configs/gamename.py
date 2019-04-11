@@ -1,4 +1,4 @@
-"""Module of reserved game names. Do not change it if you are not familiar with its usage"""
+"""Module of reserved tanks_console_game names. Do not change it if you are not familiar with its usage"""
 
 
 RIGHT = 'right'

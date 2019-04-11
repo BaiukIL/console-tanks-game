@@ -1,8 +1,7 @@
 """Game module"""
 
-
-import field
-import gamenames
+from tanks_console_game.objects import field
+from tanks_console_game.configs import gamename
 from collections import defaultdict
 
 
@@ -14,8 +13,8 @@ class Game:
         # dict {type --> list_of_objects}
         # every object meets once in object_types' bypass while in object_groups it might locate in different groups
         self.classes = defaultdict(list)
-        self.groups = {gamenames.HEALTH_OBJECTS: list(),
-                       gamenames.MOVE_OBJECTS: list()}
+        self.groups = {gamename.HEALTH_OBJECTS: list(),
+                       gamename.MOVE_OBJECTS: list()}
 
     def create_field(self, width, height):
         self.field = field.Field(width, height)

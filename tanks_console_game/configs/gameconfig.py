@@ -1,4 +1,4 @@
-"""Module of game configs. You can change them in certain range"""
+"""Module of tanks_console_game configs. You can change them in certain range"""
 
 
 # between 10 and 170

@@ -1,7 +1,6 @@
 """Module with players"""
 
-
-import gamenames
+from tanks_console_game.configs import gamename
 
 
 class Player:
@@ -13,11 +12,11 @@ class Player:
     def set_object(self, obj):
         self.obj = obj
 
-    # there is a problem: if object was removed from game (i. e. game doesn't have this object in its "classes")
+    # there is a problem: if object was removed from tanks_console_game (i. e. tanks_console_game doesn't have this object in its "classes")
     # player can still have reference to it. It happens because player.object reference to the very object so
-    # removing it from game's scope doesn't influence to object's existence at all. Python's reference system doesn't
-    # allow to have reference to the reference (e. g. "object" in game.classes is a such reference in this case)
-    # To solve problem, I've decided to check if player.obj exists in game.classes every time it's called
+    # removing it from tanks_console_game's scope doesn't influence to object's existence at all. Python's reference system doesn't
+    # allow to have reference to the reference (e. g. "object" in tanks_console_game.classes is a such reference in this case)
+    # To solve problem, I've decided to check if player.obj exists in tanks_console_game.classes every time it's called
     def exists(self):
         return self.obj in self.game.objects_array()
 
@@ -25,13 +24,13 @@ class Player:
         if not self.exists():
             return
         if act == 'w':
-            self.obj.move(gamenames.UP)
+            self.obj.move(gamename.UP)
         elif act == 'a':
-            self.obj.move(gamenames.LEFT)
+            self.obj.move(gamename.LEFT)
         elif act == 'd':
-            self.obj.move(gamenames.RIGHT)
+            self.obj.move(gamename.RIGHT)
         elif act == 's':
-            self.obj.move(gamenames.DOWN)
+            self.obj.move(gamename.DOWN)
         elif act == ' ':
             self.obj.action()
 
