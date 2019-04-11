@@ -6,8 +6,8 @@ class Unit:
     def decrease_health(self, value):
         self.health -= value
         if self.health <= 0:
-            self.die()
+            self._die()
 
     # abstract method
-    def die(self):
-        pass
+    def _die(self):
+        raise NotImplementedError
