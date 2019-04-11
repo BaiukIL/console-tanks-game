@@ -1,6 +1,6 @@
 Tank Game
 
-Console game; written in Pyton 3.6. Supports Linux devices
+Console game; written in Pyton 3.6. Supports Linux devices.
 
 
 How to play game?
