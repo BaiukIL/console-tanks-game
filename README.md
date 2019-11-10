@@ -6,7 +6,7 @@ Console game; written in Pyton 3.6. Supports Linux devices.
 How to play game?
 Download files in new folder. In console change directory to new folder.
 
-Then RUN CONSOLE FULL SCREEN and launch main.py with next command:
+Then RUN CONSOLE FULL SCREEN and run main.py as follows:
 
     name:~directories$ python3 main.py
 
